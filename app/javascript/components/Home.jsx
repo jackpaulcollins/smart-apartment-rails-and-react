@@ -1,23 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import ThingsWeNeed from './ThingsWeNeed';
+import Bills from './Bills';
+import DaysSinceTacoBell from './DaysSinceTacoBell';
 
-export default () => (
-  <div className="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">
-    <div className="jumbotron jumbotron-fluid bg-transparent">
-      <div className="container secondary-color">
-        <h1 className="display-4">Things We Need</h1>
-        <p className="lead">
-          A Currated List of the Shit this Apartment Needs
-        </p>
-        <hr className="my-4" />
-        <Link
-          to="/things-we-need"
-          className="btn btn-lg custom-button"
-          role="button"
-        >
-          View Shit We Need
-        </Link>
-      </div>
+const Home = () => {
+ return (
+    <div>
+      <ThingsWeNeed/>
+      <Bills/>
+      <DaysSinceTacoBell/>
     </div>
-  </div>
-);
+    )
+ }
+
+export default Home;
