@@ -13,7 +13,7 @@ class Thing extends React.Component {
     console.log(this.props)
     return (
       <div className="thing">
-        <Link to={`/thing/${this.props.key}`}>
+        <Link to={`/thing/${this.props.id}`}>
           <h3>{this.props.name}</h3>
           <p>{this.props.quantity}</p>
           <p>{this.props.priority}</p>
@@ -24,7 +24,7 @@ class Thing extends React.Component {
 }
 
 Thing.prototypes = {
-  key: PropTypes.number,
+  id: PropTypes.number,
   name: PropTypes.string,
   quantity: PropTypes.number,
   priority: PropTypes.string

@@ -39,6 +39,7 @@ class ThingsWeNeed extends React.Component {
     let thingsToRender = [];
     for (let i = 0; i < this.state.things.length; i++) {
       thingsToRender.push(<Thing key={i}
+                                 id={i}
                                  name={this.state.things[i].name}
                                  quantity={this.state.things[i].quantity} 
                                  priority={this.state.things[i].priority}
