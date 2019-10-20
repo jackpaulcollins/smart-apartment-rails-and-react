@@ -1,5 +1,5 @@
 class Thing < ApplicationRecord
-  validates :name, prescence: true
-  validates :quantity, prescence: true
-  validates :priority, prescence: true
+  validates :name, presence: true
+  validates :quantity, presence: true
+  validates :priority, presence: true
 end
