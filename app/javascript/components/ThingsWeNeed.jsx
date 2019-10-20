@@ -1,4 +1,5 @@
 import React from "react";
+import Thing from './Thing';
 
 class ThingsWeNeed extends React.Component {
 
@@ -9,6 +10,7 @@ class ThingsWeNeed extends React.Component {
     }
     this.getThingsPromise = this.getThingsPromise.bind(this);
     this.fetchThings = this.fetchThings.bind(this);
+    this.getThingsToRender = this.getThingsToRender.bind(this);
   }
   
   componentDidMount() {
@@ -33,11 +35,27 @@ class ThingsWeNeed extends React.Component {
     })
   }
 
+  getThingsToRender(){
+    let thingsToRender = [];
+    for (let i = 0; i < this.state.things.length; i++) {
+      thingsToRender.push(<Thing key={i}
+                                 name={this.state.things[i].name}
+                                 quantity={this.state.things[i].quantity} 
+                                 priority={this.state.things[i].priority}
+                                />)
+    }
+    return thingsToRender;
+  }
+
+ 
+
   render () {
-    console.log(this.state.things)
+
+    const thingsToRender = this.getThingsToRender();
+
       return (
         <div>
-          Things
+          { thingsToRender ? thingsToRender : 'NADA' }
         </div>
       )
     }
