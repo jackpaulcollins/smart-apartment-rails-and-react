@@ -1,6 +1,6 @@
 class Api::V1::ThingsController < ApplicationController
   def index
-    thing = Thing.all.order(created_at: :desc)
+    thing = Thing.all.order(created_at: :asc)
     render json: thing
   end
 

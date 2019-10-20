@@ -54,7 +54,7 @@ class ThingsWeNeed extends React.Component {
     const thingsToRender = this.getThingsToRender();
 
       return (
-        <div>
+        <div className='things'>
           { thingsToRender ? thingsToRender : 'NADA' }
         </div>
       )
