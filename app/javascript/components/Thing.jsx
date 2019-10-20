@@ -10,10 +10,9 @@ class Thing extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="thing">
-        <Link to={`/thing/${this.props.id}`}>
+        <Link to={`/thing/${this.props.id}`} params={this.props.id} >
           <h3>{this.props.name}</h3>
           <p>{this.props.quantity}</p>
           <p>{this.props.priority}</p>

@@ -31,7 +31,7 @@ class ThingsWeNeed extends React.Component {
 
   fetchThings() {
     this.getThingsPromise().then((response) => {
-      this.setState({ things: response})
+      this.setState({ things: response })
     })
   }
 
