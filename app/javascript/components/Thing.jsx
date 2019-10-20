@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "react";
 
 class Thing extends React.Component {
@@ -9,17 +10,21 @@ class Thing extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="thing">
-        <h3>{this.props.name}</h3>
-        <p>{this.props.quantity}</p>
-        <p>{this.props.priority}</p>
+        <Link to={`/thing/${this.props.key}`}>
+          <h3>{this.props.name}</h3>
+          <p>{this.props.quantity}</p>
+          <p>{this.props.priority}</p>
+        </Link>
       </div>
     )
   }
 }
 
 Thing.prototypes = {
+  key: PropTypes.number,
   name: PropTypes.string,
   quantity: PropTypes.number,
   priority: PropTypes.string

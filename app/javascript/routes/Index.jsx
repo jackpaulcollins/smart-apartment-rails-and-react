@@ -6,6 +6,7 @@ export default (
   <Router>
     <Switch>
       <Route path="/" exact component={Home} />
+      <Route path="/ThingDetail/:${id}" />
     </Switch>
   </Router>
 );
