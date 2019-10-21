@@ -9,6 +9,7 @@ class ThingDetails extends React.Component {
     this.state = {
       thing: {}
     };
+    this.deleteThing = this.deleteThing.bind(this);
   }
 
   componentDidMount() {
@@ -29,24 +30,70 @@ class ThingDetails extends React.Component {
     .catch(() => this.props.history.push("/"));
   }
 
-  addHtmlEntities(str) {
-    return String(str)
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">");
+  deleteThing() {
+    const {
+      match: {
+        params: { id }
+      }
+    } = this.props;
+    const url = `/api/v1/destroy/${id}`;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(() => this.props.history.push("/things"))
+      .catch(error => console.log(error.message));
   }
 
+
+
   render() {
-    const name = this.state.thing.name ? this.state.thing.name : 'loading';
-    const quantity = this.state.thing.quantity ? this.state.thing.quantity : 'loading';
-    const priority = this.state.thing.priority ? this.state.thing.priority : 'loading';
+    const name = this.state.thing.name;
+    const quantity = this.state.thing.quantity;
+    const priority = this.state.thing.priority;
     return (
-      <div className="thing-detail">
-       <h1>{name}</h1>
-       <p>Amount needed: {quantity}</p>
-       <p>Priority: {priority}</p>
-       <button>Delete</button><button>Update</button>
+      <div className="">
+        <div className="hero position-relative d-flex align-items-center justify-content-center">
+          <div className="overlay bg-dark position-absolute" />
+          <h1 className="display-4 position-relative text-white">
+            {name}
+          </h1>
+        </div>
+        <div className="container py-5">
+          <div className="row">
+            <div className="col-sm-12 col-lg-3">
+              <ul className="list-group">
+                <h5 className="mb-2">Quantity Needed</h5>
+                {quantity}
+              </ul>
+            </div>
+            <div className="col-sm-12 col-lg-7">
+              <h5 className="mb-2">Priority</h5>
+              <div>{priority}</div>
+            </div>
+            <div className="col-sm-12 col-lg-2">
+              <button type="button" className="btn btn-danger" onClick={this.deleteThing}>
+                Delete Thing
+              </button>
+            </div>
+          </div>
+          <Link to="/things" className="btn btn-link">
+            Back to All the Things
+          </Link>
+        </div>
       </div>
-    )
+    );
   }
 }
 

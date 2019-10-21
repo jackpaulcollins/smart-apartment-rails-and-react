@@ -77,6 +77,9 @@ class NewThing extends React.Component {
                   required
                   onChange={this.onChange}
                 />
+                <small id="priorityHelp" className="form-text text-muted">
+                  What do we need?
+                </small>
               </div>
               <div className="form-group">
                 <label htmlFor="thingQuantity">Quantity</label>
@@ -88,19 +91,24 @@ class NewThing extends React.Component {
                   required
                   onChange={this.onChange}
                 />
-                <small id="ingredientsHelp" className="form-text text-muted">
-                  Separate each ingredient with a comma.
+                <small id="quantityHelp" className="form-text text-muted">
+                  How many do we need?
                 </small>
               </div>
-              <label htmlFor="priority">Priority</label>
-              <textarea
+              <div>
+              <label htmlFor="thingPriority">Priority</label>
+              <input
                 className="form-control"
-                id="priority"
+                id="thingPriority"
                 name="priority"
                 rows="5"
                 required
                 onChange={this.onChange}
               />
+               <small id="priorityHelp" className="form-text text-muted">
+                  How important is this shit?
+                </small>
+              </div>
               <button type="submit" className="btn custom-button mt-3">
                 Create New Thing to Buy
               </button>

@@ -47,21 +47,59 @@ class ThingsWeNeed extends React.Component {
  
 
   render () {
-
-    const thingsToRender = this.getThingsToRender();
+    const { things } = this.state;
+    const allThings = things.map((thing, index) => (
+      <div key={index} className="col-md-6 col-lg-4">
+        <div className="card mb-4">
+          <div className="card-body">
+            <h5 className="card-title">{thing.name}</h5>
+            <Link to={`/thing/${thing.id}`} className="btn custom-button">
+              View
+            </Link>
+          </div>
+        </div>
+      </div>
+    ));
+    const noThing = (
+      <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
+        <h4>
+          No things to buy yet. Why not <Link to="/thing">create one?</Link>
+        </h4>
+      </div>
+    );
 
       return (
-        <div>
-          <div className='things'>
-            { thingsToRender ? thingsToRender : 'NADA' }
-          </div>
-          <Link to="/thing" className="btn custom-button">
-            Create New Thing to Buy
-          </Link>
-        </div>
+          <>
+            <section className="jumbotron jumbotron-fluid text-center">
+              <div className="container py-5">
+                <h1 className="display-4">Things We Need to Buy</h1>
+                <p className="lead text-muted">
+                 Here you'll find all the shit we need to buy. Paper Towels, soap, bratwurst? you
+                 name it, you'll find it here.
+                </p>
+              </div>
+            </section>
+            <div className="py-5">
+              <main className="container">
+                <div className="text-right mb-3">
+                  <Link to="/thing" className="btn custom-button">
+                    Create New Thing
+                  </Link>
+                </div>
+                <div className="row">
+                  {things.length > 0 ? allThings : noThing}
+                </div>
+                <Link to="/" className="btn btn-link">
+                  Home
+                </Link>
+              </main>
+            </div>
+          </>
       )
     }
   }
  
 export default ThingsWeNeed;
+
+
 
