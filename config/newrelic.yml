@@ -12,7 +12,8 @@
 
 common: &default_settings
   # Required license key associated with your New Relic account.
-  license_key: f69992b83890f5ab5011caab4fa91e1379a364de
+  license_key: 3f9e51389f8751b3586dcbf6e6c4b1d13a8db604
+
 
   # Your application name. Renaming here affects where data displays in New
   # Relic.  For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
@@ -30,7 +31,7 @@ common: &default_settings
 # If your application has other named environments, configure them here.
 development:
   <<: *default_settings
-  app_name: My Application (Development)
+  app_name: Jacks_Ruby_App (Dev)
 
 test:
   <<: *default_settings
@@ -39,7 +40,7 @@ test:
 
 staging:
   <<: *default_settings
-  app_name: My Application (Staging)
+  app_name: Jacks_Ruby_App (Staging)
 
 production:
   <<: *default_settings
