@@ -29,7 +29,7 @@ const Home = () => {
         <div className="container secondary-color">
           <h1 className="display-4">Bills</h1>
           <p className="lead">
-            All of the fucking money we owe
+            All of the fucking money we owe.
           </p>
           <hr className="my-4" />
           <Link
@@ -37,7 +37,7 @@ const Home = () => {
             className="btn btn-lg custom-button"
             role="button"
           >
-            View Bills we Need to pay.
+            View Bills we Need to pay
           </Link>
         </div>
        </div>
