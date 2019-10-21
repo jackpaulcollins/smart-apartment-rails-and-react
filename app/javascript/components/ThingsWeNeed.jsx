@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Thing from './Thing';
 
 class ThingsWeNeed extends React.Component {
 
