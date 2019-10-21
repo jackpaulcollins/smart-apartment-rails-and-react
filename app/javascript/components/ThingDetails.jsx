@@ -12,27 +12,21 @@ class ThingDetails extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchThing();
+    this.getThingPromise();
   }
 
   getThingPromise() {
-    return new Promise((resolve, reject) => {
-      const id = this.props.match.params.id
-      const url = `/api/v1/show/${id}`
-      fetch(url).then(response => {
-        console.log(response)
-       if (response.ok) {
+  const id = this.props.match.params.id
+  const url = `/api/v1/show/${id}`;
+  fetch(url)
+    .then(response => {
+      if (response.ok) {
         return response.json();
       }
-      throw new Error('Network response was not ok.');
-      }).then(response => resolve(response))
+      throw new Error("Network response was not ok.");
     })
-  }
-
-  fetchThing() {
-    this.getThingPromise().then((response) => {
-      this.setState({ thing: response})
-    })
+    .then(response => this.setState({ thing: response }))
+    .catch(() => this.props.history.push("/"));
   }
 
   render() {
@@ -44,6 +38,7 @@ class ThingDetails extends React.Component {
        <h1>{name}</h1>
        <p>Amount needed: {quantity}</p>
        <p>Priority: {priority}</p>
+       <button>Delete</button><button>Update</button>
       </div>
     )
   }

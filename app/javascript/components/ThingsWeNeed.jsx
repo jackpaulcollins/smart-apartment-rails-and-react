@@ -9,37 +9,32 @@ class ThingsWeNeed extends React.Component {
       things: []
     }
     this.getThingsPromise = this.getThingsPromise.bind(this);
-    this.fetchThings = this.fetchThings.bind(this);
     this.getThingsToRender = this.getThingsToRender.bind(this);
   }
   
   componentDidMount() {
-    this.fetchThings();
+    this.getThingsPromise();
   }
 
   getThingsPromise() {
-    return new Promise((resolve, reject) => {
-      const url = "/api/v1/things/index";
-      fetch(url).then(response => {
-       if (response.ok) {
-        return response.json();
-      }
-      throw new Error('Network response was not ok.');
-      }).then(response => resolve(response))
-    })
+    const url = `/api/v1/things/index`;
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => this.setState({ things: response }))
+      .catch(() => this.props.history.push("/"));
   }
 
-  fetchThings() {
-    this.getThingsPromise().then((response) => {
-      this.setState({ things: response })
-    })
-  }
 
   getThingsToRender(){
     let thingsToRender = [];
     for (let i = 0; i < this.state.things.length; i++) {
       thingsToRender.push(<Thing key={i}
-                                 id={i}
+                                 id={(i + 1)}
                                  name={this.state.things[i].name}
                                  quantity={this.state.things[i].quantity} 
                                  priority={this.state.things[i].priority}
