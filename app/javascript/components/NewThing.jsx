@@ -97,14 +97,16 @@ class NewThing extends React.Component {
               </div>
               <div>
               <label htmlFor="thingPriority">Priority</label>
-              <input
-                className="form-control"
-                id="thingPriority"
-                name="priority"
-                rows="5"
-                required
-                onChange={this.onChange}
-              />
+              <div className="dropdown">
+                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Priority
+                </button>
+                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a className="dropdown-item" href="#" onClick={()=>this.setState({priority: "High"})}>High</a>
+                  <a className="dropdown-item" href="#" onClick={()=>this.setState({priority: "Medium"})}>Medium</a>
+                  <a className="dropdown-item" href="#" onClick={()=>this.setState({priority: "Low"})}>Low</a>
+                </div>
+              </div>
                <small id="priorityHelp" className="form-text text-muted">
                   How important is this shit?
                 </small>
