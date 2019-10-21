@@ -29,12 +29,18 @@ class ThingDetails extends React.Component {
     .catch(() => this.props.history.push("/"));
   }
 
+  addHtmlEntities(str) {
+    return String(str)
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">");
+  }
+
   render() {
     const name = this.state.thing.name ? this.state.thing.name : 'loading';
     const quantity = this.state.thing.quantity ? this.state.thing.quantity : 'loading';
     const priority = this.state.thing.priority ? this.state.thing.priority : 'loading';
     return (
-      <div className="thing">
+      <div className="thing-detail">
        <h1>{name}</h1>
        <p>Amount needed: {quantity}</p>
        <p>Priority: {priority}</p>

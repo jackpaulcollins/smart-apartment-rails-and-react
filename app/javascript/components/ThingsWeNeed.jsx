@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Thing from './Thing';
 
 class ThingsWeNeed extends React.Component {
@@ -50,8 +51,13 @@ class ThingsWeNeed extends React.Component {
     const thingsToRender = this.getThingsToRender();
 
       return (
-        <div className='things'>
-          { thingsToRender ? thingsToRender : 'NADA' }
+        <div>
+          <div className='things'>
+            { thingsToRender ? thingsToRender : 'NADA' }
+          </div>
+          <Link to="/thing" className="btn custom-button">
+            Create New Thing to Buy
+          </Link>
         </div>
       )
     }
