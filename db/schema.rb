@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_19_215744) do
+ActiveRecord::Schema.define(version: 2019_10_22_025351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bills", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "amount", null: false
+    t.string "due", null: false
+    t.string "owner", null: false
+    t.string "link", default: "https://www.xfinity.com"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "things", force: :cascade do |t|
     t.string "name", null: false
