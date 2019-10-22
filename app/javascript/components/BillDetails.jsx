@@ -47,7 +47,16 @@ class BillDetails extends React.Component {
                 </ul>
               </div>
               <div className="col-sm-12 col-lg-7">
-                <h5 className="mb-2">Preparation Instructions</h5>
+                <h5 className="mb-2">Amount</h5>
+                {bill.amount}
+              </div>
+              <div className="col-sm-12 col-lg-7">
+                <h5 className="mb-2">Owner</h5>
+                {bill.owner}
+              </div>
+              <div className="col-sm-12 col-lg-7">
+                <h5 className="mb-2">Link</h5>
+                <a href={bill.link}>{bill.link}</a>
               </div>
               <div className="col-sm-12 col-lg-2">
                 <button type="button" className="btn btn-danger">
