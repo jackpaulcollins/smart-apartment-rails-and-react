@@ -34,7 +34,7 @@ class Bills extends React.Component {
         <div className="card mb-4">
           <div className="card-body">
             <h5 className="card-title">{bill.name}</h5>
-            <Link to={`/recipe/${bill.id}`} className="btn custom-button">
+            <Link to={`/bill/${bill.id}`} className="btn custom-button">
               View Bill
             </Link>
           </div>
