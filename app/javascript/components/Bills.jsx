@@ -44,7 +44,7 @@ class Bills extends React.Component {
     const noBill = (
       <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
         <h4>
-          No bills yet. Why not <Link to="/new_bill">create one</Link>
+          No bills yet. Why not <Link to="/bill">create one</Link>
         </h4>
       </div>
     );
@@ -62,7 +62,7 @@ class Bills extends React.Component {
         <div className="py-5">
           <main className="container">
             <div className="text-right mb-3">
-              <Link to="/recipe" className="btn custom-button">
+              <Link to="/bill" className="btn custom-button">
                 Add New Bill
               </Link>
             </div>

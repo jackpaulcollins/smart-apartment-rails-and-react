@@ -5,7 +5,7 @@ class Api::V1::BillsController < ApplicationController
   end
 
   def create
-    bill = Bill.create!(recipe_params)
+    bill = Bill.create!(bill_params)
     if bill
       render json: bill
     else
