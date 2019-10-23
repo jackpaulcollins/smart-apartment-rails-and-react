@@ -29,6 +29,7 @@ class BillDetails extends React.Component {
 
     render() {
       const { bill} = this.state;
+      console.log(bill.link)
   
       return (
         <div className="">
@@ -56,7 +57,7 @@ class BillDetails extends React.Component {
               </div>
               <div className="col-sm-12 col-lg-7">
                 <h5 className="mb-2">Link</h5>
-                <a href={bill.link}>{bill.link}</a>
+                <a href={`http://${bill.link}`}>{bill.link}</a>
               </div>
               <div className="col-sm-12 col-lg-2">
                 <button type="button" className="btn btn-danger">
