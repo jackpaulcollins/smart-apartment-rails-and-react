@@ -10,10 +10,31 @@ import Dropdown from 'react-bootstrap/Dropdown';
 class CustomModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      personToReset: null,
+      newDate: ''
+    };
+    this.selectPerson = this.selectPerson.bind(this);
+  }
+
+  selectPerson(person){
+    this.setState({
+      personToReset: person,
+      newDate: this.getDate()
+    })
+  }
+
+  getDate(){
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    return today
   }
 
   render () {
+    console.log(this.state)
     return (
       <>
         <Modal show={this.props.show} onHide={this.props.toggleModal}>
@@ -23,8 +44,8 @@ class CustomModal extends React.Component {
           <Modal.Body>
           <ButtonGroup>
             <DropdownButton as={ButtonGroup} title="Who was fat?" id="bg-nested-dropdown">
-              <Dropdown.Item eventKey="1">Jack</Dropdown.Item>
-              <Dropdown.Item eventKey="2">Pete</Dropdown.Item>
+              <Dropdown.Item eventKey="1" onClick={()=> this.selectPerson('Jack')}>Jack</Dropdown.Item>
+              <Dropdown.Item eventKey="2" onClick={()=> this.selectPerson('Pete')}>Pete</Dropdown.Item>
             </DropdownButton>
           </ButtonGroup>
           </Modal.Body>
