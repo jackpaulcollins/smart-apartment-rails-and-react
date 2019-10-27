@@ -1,7 +1,7 @@
 class Api::V1::DaysSinceTacoBellController < ApplicationController
   def index
-    interval_for_jack = Tacobell.where("owner = 'Jack'")
-    interval_for_pete = Tacobell.where("owner = 'Pete'")
+      last_day = Tacobell.all
+      render json: last_day
   end
 
   def create

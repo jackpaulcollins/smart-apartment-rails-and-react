@@ -7,11 +7,24 @@ class DaysSinceTacoBell extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      jackStreak: null,
-      peteStreak: null,
+      lastDay: [],
       modalShowing: false
     };
     this.toggleModal = this.toggleModal.bind(this)
+  }
+
+  componentDidMount() {
+    const url = '/api/v1/days_since_taco_bell/index';
+
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => this.setState({ lastDay: response }))
+      .catch(() => this.props.history.push("/"));
   }
 
   toggleModal(){
@@ -27,6 +40,7 @@ class DaysSinceTacoBell extends React.Component{
   }
   
   render() {
+    console.log(this.state.lastDay)
     return (
       <div>
         <h1 className="display-4">Days Since Taco Bell</h1>
