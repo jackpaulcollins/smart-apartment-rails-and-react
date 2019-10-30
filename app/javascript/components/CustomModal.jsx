@@ -15,22 +15,41 @@ class CustomModal extends React.Component {
       newDate: ''
     };
     this.selectPerson = this.selectPerson.bind(this);
+    this.updateUserDate = this.updateUserDate.bind(this);
   }
 
   selectPerson(person){
     this.setState({
-      personToReset: person,
-      newDate: this.getDate()
+      personToReset: person
     })
   }
 
-  getDate(){
-    let today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy = today.getFullYear();
-    today = mm + '/' + dd + '/' + yyyy;
-    return today
+  updateUserDate() {
+    const url = "api/v1/days_since_taco_bell/create";
+    const { personToReset } = this.state;
+
+    const body = {
+     personToReset
+    };
+
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => this.props.history.push("/"))
+      .catch(error => console.log(error.message));
+      this.props.toggleModal();
   }
 
   render () {
@@ -52,7 +71,7 @@ class CustomModal extends React.Component {
             <Button variant="secondary" onClick={this.props.toggleModal}>
               Close
             </Button>
-            <Button variant="primary" onClick={this.props.toggleModal}>
+            <Button variant="primary" onClick={this.updateUserDate}>
               Save Changes
             </Button>
           </Modal.Footer>

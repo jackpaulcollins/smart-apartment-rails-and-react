@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'days_since_taco_bell/index'
-      post 'days_since_taco_bell/create'
+      post 'days_since_taco_bell/create', to: 'days_since_taco_bell#create'
       put 'update/:id', to: 'days_since_taco_bell#update'
     
       get 'bills/index'

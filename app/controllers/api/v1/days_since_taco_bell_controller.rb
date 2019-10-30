@@ -4,6 +4,10 @@ class Api::V1::DaysSinceTacoBellController < ApplicationController
       render json: last_day
   end
 
+  def new_date
+    date = Date.today
+  end
+
   def create
   end
 
