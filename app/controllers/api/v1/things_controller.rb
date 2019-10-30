@@ -14,6 +14,8 @@ class Api::V1::ThingsController < ApplicationController
   end
 
   def show
+    thing = Thing.find(params[:id])
+    puts thing
     if thing
       render json: thing
     else

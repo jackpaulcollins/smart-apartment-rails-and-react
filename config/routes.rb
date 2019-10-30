@@ -4,21 +4,15 @@ Rails.application.routes.draw do
       get 'days_since_taco_bell/index'
       post 'days_since_taco_bell/create'
       put 'update/:id', to: 'days_since_taco_bell#update'
-    end
-  end
-  namespace :api do
-    namespace :v1 do
+    
       get 'bills/index'
       post 'bills/create'
-      get 'show/:id', to: 'bills#show'
+      get 'bills/show/:id', to: 'bills#show'
       delete 'destroy/:id', to: 'bills#destroy'
-    end
-  end
-  namespace :api do
-    namespace :v1 do
+  
       get 'things/index'
       post 'things/create'
-      get 'show/:id', to: 'things#show'
+      get 'things/show/:id', to: 'things#show'
       delete '/destroy/:id', to: 'things#destroy'
     end
   end

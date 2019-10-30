@@ -18,7 +18,7 @@ class ThingDetails extends React.Component {
 
   getThingPromise() {
   const id = this.props.match.params.id
-  const url = `/api/v1/show/${id}`;
+  const url = `/api/v1//things/show/${id}`;
   fetch(url)
     .then(response => {
       if (response.ok) {

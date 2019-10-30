@@ -14,7 +14,7 @@ class BillDetails extends React.Component {
         }
       } = this.props;
   
-      const url = `/api/v1/show/${id}`;
+      const url = `/api/v1/bills/show/${id}`;
   
       fetch(url)
         .then(response => {
