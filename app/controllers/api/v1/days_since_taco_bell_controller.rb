@@ -1,20 +1,22 @@
 class Api::V1::DaysSinceTacoBellController < ApplicationController
   def index
-      last_day = Tacobell.all
-      render json: last_day
+      last_day_for_jack = Tacobell.where(owner: "Jack")
+      last_day_for_pete = Tacobell.where(owner: "Pete")
+      respond_to do |format|
+        format.json  { render :json => {:jack => last_day_for_jack, 
+                                        :pete => last_day_for_pete }}
+      end
   end
-
-  def new_date
-    date = Date.today
-  end
-
+  
   def create
-  end
-
-  def show
-  end
-
-  def update
+    if params[:personToReset] = "Jack"
+      jacks_last_day = Tacobell.update(owner: params[:personToReset], lastday: Date.today)
+      render json: jacks_last_day
+    end
+    if params[:personToReset] = "Pete"
+      petes_last_day = Tacobell.update(owner: params[:personToReset], lastday: Date.today)
+      render json: petes_last_day
+    end
   end
 
   def destroy
