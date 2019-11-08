@@ -2,10 +2,12 @@ class Api::V1::DaysSinceTacoBellController < ApplicationController
   def index
       last_day_for_jack = Tacobell.where(owner: "Jack")
       last_day_for_pete = Tacobell.where(owner: "Pete")
-      respond_to do |format|
-        format.json  { render :json => {:jack => last_day_for_jack, 
-                                        :pete => last_day_for_pete }}
-      end
+      render json: [last_day_for_jack, last_day_for_pete]
+  end
+
+  def calc_streak(date)
+    streak = date.days_since
+    return streak
   end
   
   def create
