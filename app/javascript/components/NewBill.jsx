@@ -31,7 +31,7 @@ class NewBill extends React.Component {
       owner,
       link,
     };
-
+    
     const token = document.querySelector('meta[name="csrf-token"]').content;
     fetch(url, {
       method: "POST",

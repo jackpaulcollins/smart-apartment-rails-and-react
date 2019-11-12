@@ -1,31 +1,24 @@
 import React from "react";
 import CustomModal from "./CustomModal";
-import { throws } from "assert";
-
 
 class DaysSinceTacoBell extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      users: null,
+      jack: null,
+      pete: null,
       modalShowing: false
     };
     this.toggleModal = this.toggleModal.bind(this);
     this.determineStreak = this.determineStreak.bind(this);
+    this.parseStreak = this.parseStreak.bind(this);
+    this.getJackPromise = this.getJackPromise.bind(this);
+    this.getPetePromise = this.getPetePromise.bind(this);
   }
 
   componentDidMount() {
-    const url = '/api/v1/days_since_taco_bell/index';
-
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then(response => this.setState({ lastDay: response }))
-      .catch(() => this.props.history.push("/"));
+    this.getJackPromise();
+    this.getPetePromise();
   }
 
   toggleModal(){
@@ -40,6 +33,35 @@ class DaysSinceTacoBell extends React.Component{
     }
   }
 
+  getJackPromise() {
+    const url = '/api/v1/users/jack';
+
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => this.setState({ jack: response }))
+      .catch(() => this.props.history.push("/"));
+  }
+
+  getPetePromise() {
+    const url = '/api/v1/users/pete';
+
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then(response => this.setState({ pete: response }))
+      .catch(() => this.props.history.push("/"));
+  }
+
+
   determineStreak(date){
     const lastDate = new Date(date)
     let today = new Date();
@@ -48,12 +70,18 @@ class DaysSinceTacoBell extends React.Component{
     return diffInDays
   }
 
+  parseStreak(user){
+    if (user) {
+      return this.determineStreak(user)
+    } else {
+      return 'Sorry, cannot determine streak'
+    }
+  }
+
   
   render() {
-    const jackStats = this.state.lastDay ? this.state.lastDay[0][0].lastday : ''
-    const peteStats = this.state.lastDay ? this.state.lastDay[1][0].lastday : ''
-    const jackStreak = this.determineStreak(jackStats)
-    const peteStreak = this.determineStreak(peteStats)
+    const jackStreak = this.state.jack ? this.parseStreak(this.state.jack[0].last_day_having_tacobell) : 'Loading'
+    const peteStreak = this.state.pete ? this.parseStreak(this.state.pete[0].last_day_having_tacobell) : 'Loading'
     return (
       <div>
         <h1 className="display-4">Days Since Taco Bell</h1>

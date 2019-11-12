@@ -1,7 +1,7 @@
 class Api::V1::DaysSinceTacoBellController < ApplicationController
   def index
-      last_day_for_jack = Tacobell.where(owner: "Jack")
-      last_day_for_pete = Tacobell.where(owner: "Pete")
+      last_day_for_jack = Tacobell.where(owner: "Jack").last
+      last_day_for_pete = Tacobell.where(owner: "Pete").last
       render json: [last_day_for_jack, last_day_for_pete]
   end
 
@@ -12,13 +12,14 @@ class Api::V1::DaysSinceTacoBellController < ApplicationController
   
   def create
     if params[:personToReset] = "Jack"
-      jacks_last_day = Tacobell.update(owner: params[:personToReset], lastday: Date.today)
-      render json: jacks_last_day
+      Tacobell.update(owner: params[:personToReset], lastday: Date.today)
     end
     if params[:personToReset] = "Pete"
-      petes_last_day = Tacobell.update(owner: params[:personToReset], lastday: Date.today)
-      render json: petes_last_day
-    end
+      Tacobell.update(owner: params[:personToReset], lastday: Date.today)
+      #problem, this is always overwriting the record in the database ^
+      #Jack and Pete should have their own database tables
+      #The db should probaby have a table of users
+      #and each user should have a section of last_day to track streak
   end
 
   def destroy
