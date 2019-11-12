@@ -25,7 +25,7 @@ class CustomModal extends React.Component {
   }
 
   updateUserDate() {
-    const url = "api/v1/days_since_taco_bell/create";
+    const url = "api/v1/users/update";
     const { personToReset } = this.state;
 
     const body = {

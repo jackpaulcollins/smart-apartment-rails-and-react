@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'users/jack', to: 'users#jack'
       get 'users/pete', to: 'users#pete'
-      put 'update/:id', to: 'users#update'
+      post 'users/update', to: 'users#update'
     
       get 'bills/index'
       post 'bills/create'
