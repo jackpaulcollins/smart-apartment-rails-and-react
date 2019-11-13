@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    user = User.where(first_name: params[:personToReset])
-    puts user.first_name
+    user = User.find_by(first_name: params[:personToReset])
+    render json: user 
   end
 end

@@ -43,11 +43,12 @@ class CustomModal extends React.Component {
     })
       .then(response => {
         if (response.ok) {
+          console.log(response.json())
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.props.history.push("/"))
+      //.then(response => this.props.history.push("/"))
       .catch(error => console.log(error.message));
       this.props.toggleModal();
   }
