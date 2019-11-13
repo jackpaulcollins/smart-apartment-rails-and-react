@@ -15,6 +15,7 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     user = User.find_by(first_name: params[:personToReset])
+    user.update(last_day_having_tacobell: Time.now)
     render json: user 
   end
 end
