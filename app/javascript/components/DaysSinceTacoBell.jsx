@@ -66,7 +66,7 @@ class DaysSinceTacoBell extends React.Component{
     const lastDate = new Date(date)
     let today = new Date();
     const streak = (today - lastDate)
-    const diffInDays = streak / (1000 * 3600 * 24)
+    const diffInDays = Math.round(streak / (1000 * 3600 * 24))
     return diffInDays
   }
 
@@ -86,8 +86,8 @@ class DaysSinceTacoBell extends React.Component{
       <div>
         <h1 className="display-4">Days Since Taco Bell</h1>
         <div className="lead">
-          <p>Jack: {jackStreak}</p>
-          <p>Pete: {peteStreak}</p>
+          <p>Jack: {jackStreak} {(jackStreak === 1) ? 'Day' : 'Days'}</p>
+          <p>Pete: {peteStreak} {(peteStreak === 1) ? 'Day' : 'Days'}</p>
         </div>
         <button type="button" className="btn btn-dark" onClick={this.toggleModal}>Reset you fat fuck</button>
         <div>
