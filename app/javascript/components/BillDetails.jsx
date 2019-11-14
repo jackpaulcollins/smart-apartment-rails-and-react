@@ -5,6 +5,7 @@ class BillDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = { bill: [] };
+    this.deleteBill = this.deleteBill.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,32 @@ class BillDetails extends React.Component {
         })
         .then(response => this.setState({ bill: response }))
         .catch(() => this.props.history.push("/recipes"));
+    }
+
+    deleteBill() {
+      const {
+        match: {
+          params: { id }
+        }
+      } = this.props;
+      const url = `/api/v1/bills/destroy/${id}`;
+      const token = document.querySelector('meta[name="csrf-token"]').content;
+  
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          "X-CSRF-Token": token,
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then(() => this.props.history.push("/bills"))
+        .catch(error => console.log(error.message));
     }
 
     render() {
@@ -60,7 +87,7 @@ class BillDetails extends React.Component {
                 <a href={`http://${bill.link}`}>{bill.link}</a>
               </div>
               <div className="col-sm-12 col-lg-2">
-                <button type="button" className="btn btn-danger">
+                <button type="button" className="btn btn-danger" onClick={this.deleteBill}>
                   Delete bill
                 </button>
               </div>
