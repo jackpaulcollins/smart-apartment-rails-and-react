@@ -25,7 +25,7 @@ class BillDetails extends React.Component {
           throw new Error("Network response was not ok.");
         })
         .then(response => this.setState({ bill: response }))
-        .catch(() => this.props.history.push("/recipes"));
+        .catch(() => this.props.history.push("/bills"));
     }
 
     deleteBill() {
