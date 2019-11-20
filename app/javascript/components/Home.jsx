@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import DaysSinceTacoBell from './DaysSinceTacoBell';
+import MessageBoard from './MessageBoard'
 
 const Home = () => {
  return (
@@ -44,6 +45,7 @@ const Home = () => {
       </div>
     </div>
     <div className="days-since-tb"><DaysSinceTacoBell/></div>
+    <MessageBoard/>
   </div>    
     )
  }

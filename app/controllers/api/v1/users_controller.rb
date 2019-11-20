@@ -18,4 +18,9 @@ class Api::V1::UsersController < ApplicationController
     user.update(last_day_having_tacobell: Time.now)
     render json: user 
   end
+
+  def temp_method
+    jack = User.find_by(first_name: "Jack")
+    jack.update(last_day_having_tacobell: "10-01-2019")
+  end
 end
