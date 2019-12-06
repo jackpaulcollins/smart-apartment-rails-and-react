@@ -80,6 +80,7 @@ class DaysSinceTacoBell extends React.Component{
 
   
   render() {
+    console.log(this.state.jack)
     const jackStreak = this.state.jack ? this.parseStreak(this.state.jack[0].last_day_having_tacobell) : 'Loading'
     const peteStreak = this.state.pete ? this.parseStreak(this.state.pete[0].last_day_having_tacobell) : 'Loading'
     return (

@@ -43,7 +43,6 @@ class CustomModal extends React.Component {
     })
       .then(response => {
         if (response.ok) {
-          console.log(response.json())
           return response.json();
         }
         throw new Error("Network response was not ok.");
@@ -62,6 +61,7 @@ class CustomModal extends React.Component {
           </Modal.Header>
           <Modal.Body>
           <ButtonGroup>
+            <p>{this.state.personToReset}</p>
             <DropdownButton as={ButtonGroup} title="Who was fat?" id="bg-nested-dropdown">
               <Dropdown.Item eventKey="1" onClick={()=> this.selectPerson('Jack')}>Jack</Dropdown.Item>
               <Dropdown.Item eventKey="2" onClick={()=> this.selectPerson('Pete')}>Pete</Dropdown.Item>

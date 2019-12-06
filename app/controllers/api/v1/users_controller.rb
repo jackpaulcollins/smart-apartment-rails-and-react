@@ -1,4 +1,6 @@
 class Api::V1::UsersController < ApplicationController
+  #before_action :authenticate_user!
+
   def index
     user = User.all
   end
@@ -16,6 +18,7 @@ class Api::V1::UsersController < ApplicationController
   def update
     user = User.find_by(first_name: params[:personToReset])
     user.update(last_day_having_tacobell: Time.now)
+    puts user.last_day_having_tacobell
     render json: user 
   end
 

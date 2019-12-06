@@ -45,7 +45,6 @@ const Home = () => {
       </div>
     </div>
     <div className="days-since-tb"><DaysSinceTacoBell/></div>
-    <MessageBoard/>
   </div>    
     )
  }
